@@ -169,9 +169,9 @@ public class MultiLayerPerceptron {
     }
 
 
+
+    //Initializing Weights Of OutputLayer
     float[] initializeWeightsOfOutputLayer(){
-
-
 
 
         for (int i = 0; i < weightsOfOutputLayer.length; i++) {
@@ -184,7 +184,7 @@ public class MultiLayerPerceptron {
         return weightsOfLayer3;
     }
 
-
+    //Initializing Bias Of OutputLayer
     float initializeBiasofOutputLayer(){
 
         System.out.println("***************** Output Layer  Bias values ***************");
@@ -266,6 +266,7 @@ public class MultiLayerPerceptron {
     }
 
 
+    // Calculate final output
     float calculateOutput(float[] YOfLayer3 , float[] weightsOfLayer3, float   biasOfOutputLayer){
 
         for (int i = 0; i < YOfLayer3.length; i++) {
@@ -279,6 +280,7 @@ public class MultiLayerPerceptron {
 
 
 
+    // Updating Weights of OutputLayer
     float[] updateWeightsOfOutputLayer(float error, float learningRate){
 
         for (int i = 0; i < weightsOfOutputLayer.length; i++){
@@ -290,7 +292,7 @@ public class MultiLayerPerceptron {
         return weightsOfOutputLayer;
     }
 
-
+    // Updating Bias of OutputLayer
     float updateBiasOfOutputLayer(float error, float learningRate){
 
         biasOfOutputLayer  =  biasOfOutputLayer + learningRate * error;
@@ -300,9 +302,7 @@ public class MultiLayerPerceptron {
 
 
 
-
-
-
+    // Local Gradient calculation of Layer 3
     float[] calculateLocalGradientsOfLayer3(float error , float[] updatedWeightsOfOutputLayer, float[] YOfLayer3){
 
 
@@ -316,6 +316,7 @@ public class MultiLayerPerceptron {
     }
 
 
+    // Weight update of Layer 3
     float[] updateWeightsOfLayer3(float[] YOfLayer2 , float[] weightsOfLayer3 , float[] localGradientsOfLayer3, float learningRate ){
 
 
@@ -332,6 +333,7 @@ public class MultiLayerPerceptron {
     }
 
 
+    // Bias update of Layer 3
     float[] updateBiasOfLayer3(float learningRate , float[] localGradientsOfLayer3 ){
 
 
@@ -343,19 +345,17 @@ public class MultiLayerPerceptron {
     }
 
 
+    // Local Gradient calculation of Layer 2
     float[] calculateLocalGradientsOfLayer2(float[] updatedWeightsOfLayer3, float[] localGradientsOfLayer3 ,float[] YOfLayer2){
-
-
 
             localGradientsOfLayer2[0]  = YOfLayer2[0]*(1-YOfLayer2[0])*(localGradientsOfLayer3[0]*updatedWeightsOfLayer3[0] + localGradientsOfLayer3[1]*updatedWeightsOfLayer3[1]);
             localGradientsOfLayer2[1]  = YOfLayer2[1]*(1-YOfLayer2[1])*(localGradientsOfLayer3[1]*updatedWeightsOfLayer3[2] + localGradientsOfLayer3[2]*updatedWeightsOfLayer3[3]);
 
-
-
-
         return localGradientsOfLayer2;
     }
 
+
+    // Weight update of Layer 2
     float[] updateWeightsOfLayer2(float[] YOfLayer1 , float[] weightsOfLayer2 ,float[] localGradientsOfLayer2, float learningRate ){
 
 
@@ -371,6 +371,7 @@ public class MultiLayerPerceptron {
     }
 
 
+    // Bias update of Layer 2
     float[] updateBiasOfLayer2(float learningRate , float[] localGradientsOfLayer2 ){
 
 
@@ -381,6 +382,7 @@ public class MultiLayerPerceptron {
         return biasOfLayer2;
     }
 
+    // Local Gradient calculation of Layer 1
     float[] calculateLocalGradientsOfLayer1(float[] updatedWeightsOfLayer2, float[] localGradientsOfLayer2 ,float[] YOfLayer1){
 
 
@@ -394,6 +396,7 @@ public class MultiLayerPerceptron {
 
 
 
+    // Weight update of Layer 1
     float[] updateWeightsOfLayer1(float input, float learningRate,  float[] weightsOfLayer1 , float[] localGradientsOfLayer1){
 
         for (int i =0; i<weightsOfLayer1.length; i++){
@@ -403,6 +406,8 @@ public class MultiLayerPerceptron {
         return weightsOfLayer1;
     }
 
+
+    // Bias update of Layer 1
     float[] updateBiasOfLayer1(float learningRate , float[] localGradientsOfLayer1 ){
 
 

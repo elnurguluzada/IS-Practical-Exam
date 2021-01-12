@@ -98,6 +98,7 @@ public class Main {
 
                 updatedLocalGradientsOfLayer1 = multilayerPerceptron.calculateLocalGradientsOfLayer1(weightsOfLayer2, updatedLocalGradientsOfLayer2, YOfLayer1);
                 weightsOfLayer1 = multilayerPerceptron.updateWeightsOfLayer1(inputVector[i] , learningRate, weightsOfLayer1, updatedLocalGradientsOfLayer1);
+                biasOfLayer1 = multilayerPerceptron.updateBiasOfLayer1(learningRate, updatedLocalGradientsOfLayer1);
 
 
                 YOfLayer1 = multilayerPerceptron.calculateOutputsOfLayer_1(inputVector[i] , weightsOfLayer1, biasOfLayer1);
